@@ -20,7 +20,7 @@ Before you begin, ensure you have met the following requirements:
 
 3. Configure your PostgreSQL database connection details in the code:
  - database_name = "YourDatabaseName"
- - host = "localhost"
+ - host = "YourHostName"
  - user = "YourUsername"
  - password = "YourPassword"
    
