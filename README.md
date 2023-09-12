@@ -35,7 +35,7 @@ The script will read the data file and store it in the specified database table.
 ## Database Structure
 The script creates a schema named my_schema and a table named my_table in the PostgreSQL database. The table has the following columns:
 
-+ id (Serial Primary Key)
-+ name (VARCHAR)
-+ age (INT)
-+ email (VARCHAR)
+- id (Serial Primary Key)
+- name (VARCHAR)
+- age (INT)
+- email (VARCHAR)
