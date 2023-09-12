@@ -19,7 +19,7 @@ Before you begin, ensure you have met the following requirements:
    pip install psycopg2 pandas sqlalchemy
 
 3. Configure your PostgreSQL database connection details in the code:
-   database_name = "YourDatabaseName"
+   + database_name = "YourDatabaseName"
    host = "localhost"
    user = "YourUsername"
    password = "YourPassword"
