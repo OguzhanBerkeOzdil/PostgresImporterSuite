@@ -5,10 +5,10 @@ import json
 import os
 
 # Define database connection parameters
-database_name = "database name"
-host = "host name"
-user = "user name"
-password = "your password"
+database_name = "ProjectDatabase"
+host = "localhost"
+user = "postgres"
+password = "7415963"
 
 
 try: # Establish a connection to the PostgreSQL database
@@ -56,7 +56,7 @@ try: # Establish a connection to the PostgreSQL database
         print("Invalid choice. Please enter 1, 2, or 3.")
         exit()
 
-    data_file_path = f'data.{file_extension}'
+    data_file_path = f'C:\\Users\\ucunb\\Downloads\\PostgresImporterSuite-master\\PostgresqlImporterSuite\\data.{file_extension}'
 
     # Read data from the selected file type
     if os.path.isfile(data_file_path):
