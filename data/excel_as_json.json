@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Sarah Connor",
+      "age": 45,
+      "email": "sarah@example.com"
+    },
+    {
+      "id": 2,
+      "name": "John Connor",
+      "age": 25,
+      "email": "john.connor@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Kyle Reese",
+      "age": 35,
+      "email": "kyle@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Ellen Ripley",
+      "age": 40,
+      "email": "ripley@example.com"
+    },
+    {
+      "id": 5,
+      "name": "Dutch Schaefer",
+      "age": 42,
+      "email": "dutch@example.com"
+    }
+  ]
+}
