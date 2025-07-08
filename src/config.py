@@ -24,9 +24,21 @@ class DatabaseConfig:
         self.host = os.getenv('DB_HOST', 'localhost')
         self.user = os.getenv('DB_USER', 'postgres')
         self.password = os.getenv('DB_PASSWORD', '')
-        self.port = os.getenv('DB_PORT', '5432')
+        self.port = int(os.getenv('DB_PORT', '5432'))
         self.schema_name = os.getenv('SCHEMA_NAME', 'data_import_schema')
         self.table_name = os.getenv('TABLE_NAME', 'imported_data')
+    
+    def load_from_env(self, env_file: str = '.env'):
+        """Load configuration from environment file."""
+        if os.path.exists(env_file):
+            load_dotenv(env_file, override=True)
+            self.db_name = os.getenv('DB_NAME', self.db_name)
+            self.host = os.getenv('DB_HOST', self.host)
+            self.user = os.getenv('DB_USER', self.user)
+            self.password = os.getenv('DB_PASSWORD', self.password)
+            self.port = int(os.getenv('DB_PORT', str(self.port)))
+            self.schema_name = os.getenv('SCHEMA_NAME', self.schema_name)
+            self.table_name = os.getenv('TABLE_NAME', self.table_name)
     
     def get_connection_params(self) -> Dict[str, Any]:
         """Get database connection parameters."""

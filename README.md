@@ -1,225 +1,187 @@
-# PostgreSQL Data Import Suite
+# PostgreSQL Data Import Tool
 
-## Original Project (2022-2023)
+A user-friendly GUI application for importing CSV, Excel, and JSON files into PostgreSQL databases with dynamic table creation.
 
-This project was originally developed as part of the Database 2 course project for Computer Science department at AGH University of Krakow, 2nd year.
+## Project History
 
-**Original Developers:** Oğuzhan Berke Özdil and Berkay Doruk
+This project was originally started 3 years ago as a term project for the Database 2 course at **AGH University of Science and Technology**. The initial development team consisted of:
 
-The original project demonstrated basic data integration from various file formats (CSV, Excel, JSON) into a PostgreSQL database using Python, psycopg2, and pandas libraries.
+- **Oğuzhan Berke Özdil** (Bachelor Computer Science, 2nd year)
+- **Berkay Doruk** (Bachelor Computer Science, 2nd year)
 
-## Modern Version (2025)
+The project has since evolved and been completely rewritten and maintained by **Oğuzhan Berke Özdil**.
 
-This project has been completely modernized and restructured to be a professional, maintainable, and user-friendly application.
+## Features
 
-**Updated by:** Oğuzhan Berke Özdil
+- **Dynamic Import**: Automatically handles any file structure and column names
+- **Multiple Formats**: Supports CSV, Excel (.xlsx, .xls), and JSON files
+- **Smart Preview**: Preview data before import, even for files without headers
+- **Auto Table Creation**: Creates schemas and tables automatically based on data structure
+- **Real-time Connection Testing**: Test database connectivity with visual feedback
+- **Progress Tracking**: Live import progress with detailed status updates
+- **Data Validation**: Handles missing headers, special characters, and various data types
+- **Latest Data View**: View imported data with most recent records first
 
-### New Features and Improvements
+## Quick Start
 
-- **Modern Architecture:** Modular design with proper separation of concerns
-- **Configuration Management:** Environment-based configuration with .env files
-- **Enhanced Error Handling:** Comprehensive error handling and logging
-- **Data Validation:** Robust data validation and cleaning processes
-- **Database Management:** Advanced database operations with connection pooling
-- **User Interface:** Interactive command-line interface with clear feedback
-- **Type Safety:** Full type hints for better code quality
-- **Documentation:** Comprehensive documentation and code comments
-- **Automated Setup:** Setup script for easy installation and configuration
-- **UPSERT Operations:** Conflict resolution for duplicate email addresses
-- **Auto Schema Creation:** Automatic database schema and table creation
-- **Cross-platform Support:** Windows, Linux, and macOS compatibility
-- **Test Suite:** Comprehensive testing framework included
+1. **Run the Application**:
+   ```bash
+   PostgreSQL-Data-Import.exe
+   ```
 
-### Technical Improvements
+2. **Configure Database**:
+   - Click "Database Settings"
+   - Enter PostgreSQL connection details
+   - Test connection (✅/❌ status shown)
+   - Create schema/table if needed
 
-- **Error Recovery:** Graceful handling of database connection failures
-- **Data Normalization:** Automatic data structure standardization across formats
-- **SQL Injection Prevention:** Parameterized queries for security
-- **Connection Pooling:** Efficient database connection management
-- **Logging System:** Detailed application and error logging
-- **Virtual Environment:** Isolated dependency management
+3. **Import Data**:
+   - Click "Browse Files" to select data files
+   - Preview files to verify structure
+   - Click "Import Data" to process
+   - Monitor progress and status
+
+4. **View Results**:
+   - Click "View Database" to see imported data
+   - Check sync status indicators
+
+## Database Configuration
+
+**Required Settings**:
+- Host: PostgreSQL server address
+- Port: Database port (default: 5432)
+- Database: Target database name
+- Username/Password: Database credentials
+- Schema: Target schema (created if missing)
+- Table: Base table name for imports
+
+**Connection Features**:
+- ✅ Real-time connection testing
+- 🔧 Automatic schema/table creation
+- 🔄 Sync status indicators
+- 💾 Save settings to .env file
+
+## File Support
+
+**Supported Formats**:
+- CSV files (any delimiter, encoding)
+- Excel files (.xlsx, .xls)
+- JSON files (various structures)
+
+**Smart Handling**:
+- Files without headers → Auto-generates column names
+- Numeric-only data → Creates structured columns
+- Special characters → Cleaned for database compatibility
+- Mixed data types → Automatic type detection
+
+## Import Process
+
+1. **File Selection**: Choose one or multiple files
+2. **Preview**: Check data structure and content
+3. **Import**: Dynamic table creation and data insertion
+4. **Validation**: Real-time progress and error handling
+5. **Verification**: View imported data immediately
+
+## Status Indicators
+
+- 🔄 Connection testing in progress
+- ✅ Connected and ready
+- ❌ Connection failed
+- ⚠️ Partial import success
+- 🎉 Complete import success
+
+## Technical Details
+
+- **Language**: Python 3.13+
+- **Database**: PostgreSQL with psycopg2 and SQLAlchemy
+- **GUI**: Tkinter with modern styling
+- **Data**: Pandas for processing and validation
+- **Build**: PyInstaller for standalone executable
+
+## Requirements
+
+- Windows 10/11
+- PostgreSQL database (local or remote)
+- Valid database credentials
+
+---
+
+**Current Maintainer**: Oğuzhan Berke Özdil  
+**Version**: 2.0 - Dynamic Import  
+**License**: MIT
+
+## Supported Data Formats
+
+### CSV Files (.csv)
+- Automatic delimiter detection (comma, semicolon, tab)
+- Multiple encoding support (UTF-8, Latin-1, CP1252)
+- Header row recognition
+
+### Excel Files (.xlsx, .xls)
+- Native Excel format support
+- First worksheet import
+- Mixed data type handling
+
+### JSON Files (.json)
+- Nested object flattening
+- Array data extraction
+- Flexible schema adaptation
+
+## Database Operations
+
+The application creates tables dynamically based on the imported file structure:
+
+- **Column Names**: Cleaned and normalized from file headers
+- **Data Types**: Automatically mapped (TEXT, INTEGER, DECIMAL, TIMESTAMP)
+- **Primary Keys**: Auto-increment ID columns when needed
+- **Metadata**: Import timestamp tracking
+- **Schema Management**: Organized within configurable database schemas
+
+## Configuration
+
+Database settings are managed through the built-in configuration dialog:
+
+- **Host**: Database server address
+- **Port**: Connection port (default: 5432)
+- **Database**: Target database name
+- **Username**: Database user credentials
+- **Password**: Secure password handling
+- **Schema**: Target schema for table creation
+- **Table**: Default table name (overridden by filename)
+
+Settings can be saved to `.env` files for reuse across sessions.
+
+## Development Build
+
+For developers who need to build from source:
 
 ### Prerequisites
-
-- Python 3.11 or higher
-- PostgreSQL database server
-- Git (for cloning the repository)
-
-### Installation and Setup
-
-#### Option 1: Automatic Setup (Recommended)
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/OguzhanBerkeOzdil/PostgresImporterSuite.git
-   cd PostgresImporterSuite
-   ```
-
-2. **Run the setup script:**
-
-   ```bash
-   python setup.py
-   ```
-
-   This will automatically:
-   - Create a virtual environment
-   - Install all required dependencies
-   - Set up configuration files
-
-#### Option 2: Manual Setup
-
-1. **Create virtual environment:**
-
-   ```bash
-   python -m venv venv
-   ```
-
-2. **Activate virtual environment:**
-
-   ```bash
-   # Windows
-   .\venv\Scripts\activate
-   
-   # Linux/Mac
-   source venv/bin/activate
-   ```
-
-3. **Install dependencies:**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Configuration
-
-1. **Setup environment file:**
-
-   Copy the example configuration:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-2. **Configure database connection:**
-
-   Update the `.env` file with your PostgreSQL credentials:
-
-   ```env
-   DB_NAME=your_database_name
-   DB_HOST=localhost
-   DB_USER=your_username
-   DB_PASSWORD=your_password
-   DB_PORT=5432
-   ```
-
-### Usage
-
-1. **Activate virtual environment:**
-
-   ```bash
-   # Windows
-   .\venv\Scripts\activate
-   
-   # Linux/Mac
-   source venv/bin/activate
-   ```
-
-2. **Run the application:**
-
-   ```bash
-   python main.py
-   ```
-
-3. **Select operation from menu:**
-   - 1: Import CSV file
-   - 2: Import Excel file
-   - 3: Import JSON file
-   - 4: Show database information
-   - 5: Test database connection
-   - 0: Exit
-
-### Data Files
-
-Place your data files in the `data/` directory:
-
-- **CSV:** `data/data.csv`
-- **Excel:** `data/data.xlsx`
-- **JSON:** `data/data.json`
-
-Sample files are provided for testing.
-
-### Database Structure
-
-The application creates an enhanced database structure with the following schema:
-
-**Schema:** `data_import_schema` (configurable via .env)  
-**Table:** `imported_data` (configurable via .env)
-
-**Table Structure:**
-```sql
-CREATE TABLE data_import_schema.imported_data (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    age INTEGER CHECK (age >= 0 AND age <= 150),
-    email VARCHAR(255) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Indexes for performance
-CREATE INDEX idx_imported_data_email ON data_import_schema.imported_data(email);
-
--- Trigger for automatic timestamp updates
-CREATE TRIGGER update_imported_data_updated_at 
-BEFORE UPDATE ON data_import_schema.imported_data 
-FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-```
-
-**Key Improvements:**
-- Email uniqueness constraint prevents duplicates
-- Age validation ensures data quality
-- Automatic timestamp management
-- Optimized indexes for query performance
-- UPSERT operations for conflict resolution
-
-### Testing
-
-To test the application without connecting to a database:
-
 ```bash
-python test_app.py
+pip install -r requirements.txt
 ```
 
-This will verify that all modules are working correctly and sample data files can be processed.
+### Build Process
+```bash
+python build.py
+```
 
-### Troubleshooting
+The executable will be generated in the `dist/` directory.
 
-**Common Issues:**
+### Dependencies
+- pandas: Data manipulation and analysis
+- psycopg2-binary: PostgreSQL database adapter
+- sqlalchemy: Database toolkit and ORM
+- openpyxl: Excel file processing
+- python-dotenv: Environment variable management
+- numpy: Numerical computing support
 
-1. **Database Connection Failed:**
-   - Verify PostgreSQL is running
-   - Check credentials in `.env` file
-   - Ensure database exists and user has proper permissions
+## Project Evolution
 
-2. **Module Import Errors:**
-   - Make sure virtual environment is activated
-   - Reinstall requirements: `pip install -r requirements.txt`
+**Version 1.0**: Initial command-line implementation with basic import functionality  
+**Version 2.0**: Complete GUI redesign with dynamic import capabilities and enhanced user experience
 
-3. **File Not Found Errors:**
-   - Ensure data files are in the `data/` directory
-   - Check file permissions
+The tool has been designed for scalability and maintainability, with modular architecture supporting future enhancements and additional data formats.
 
-**Logging:**
+---
 
-Application logs are saved to `import_log.log` for debugging purposes.
-
-### License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-### Version History
-
-**Version 2.0 (2025)** - Complete modernization with modular architecture, enhanced error handling, UPSERT operations, and interactive CLI.
-
-**Version 1.0 (2022-2023)** - Original university project for Database 2 course at AGH University of Krakow.
+**Oğuzhan Berke Özdil** - 2025
